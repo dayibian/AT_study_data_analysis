@@ -11,7 +11,9 @@ def convert_time(time_in_second):
     return pd.to_datetime(str_t)
     
 def import_data(path):
-    df = pd.read_csv(path, sep = ' ',  names = ['Signal','TimeStamp','Value'], error_bad_lines = False)
+    df = pd.read_csv(path, sep = ' ',  
+                    names = ['Signal','TimeStamp','Value'], 
+                    error_bad_lines = False)
     df.TimeStamp = pd.to_numeric(df.TimeStamp, errors = 'coerce')
     df.Value = pd.to_numeric(df.Value, errors = 'coerce')
     df = df.dropna(how = 'any')
@@ -23,3 +25,4 @@ def import_data(path):
 if __name__ == '__main__':
     df = import_data('physioData_Test_time_05.14.46.txt')
     print df.head(10)
+    df.xs('E4_Bvp',level='Signal')['2016-08-29 17:14:49':'2016-08-29 17:14:50']
