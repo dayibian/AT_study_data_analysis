@@ -1,13 +1,16 @@
-from datetime import datetime,timedelta
-from dateutil import tz
+#from datetime import datetime,timedelta
+#from dateutil import tz
+import time
 import pandas as pd
 
-ref_time = datetime(1970,1,1,tzinfo=tz.tzutc())
+#ref_time = datetime(1970,1,1,tzinfo=tz.tzutc())
 
 def convert_time(time_in_second):
-    t = ref_time + timedelta(seconds = time_in_second)
-    t = t.astimezone(tz.tzlocal())
-    str_t = t.strftime("%Y-%m-%d %H:%M:%S")
+    #t = ref_time + timedelta(microseconds = time_in_second*(10**6))
+    #t = t.astimezone(tz.tzlocal())
+    #str_t = t.strftime("%Y-%m-%d %H:%M:%f")
+    t = time.localtime(time_in_second)
+    str_t = time.strftime("%Y-%m-%d %H:%M:%S",t)
     return pd.to_datetime(str_t)
     
 def import_data(path):
@@ -23,6 +26,6 @@ def import_data(path):
     return df
     
 if __name__ == '__main__':
-    df = import_data('physioData_Test_time_05.14.46.txt')
+    df = import_data('test_data.txt')
     print df.head(10)
-    df.xs('E4_Bvp',level='Signal')['2016-08-29 17:14:49':'2016-08-29 17:14:50']
+    #df.xs('E4_Bvp',level='Signal')['2016-08-29 17:14:49':'2016-08-29 17:14:50']
