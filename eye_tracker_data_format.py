@@ -9,10 +9,6 @@ def import_eye_tracker_data(fp):
                         columns=lines[17].split())
     df_num = df.apply(lambda x: pd.to_numeric(x,errors='ignore'))
     return rec_time, df_num
-
-def import_msgs(fp):
-    msgs = json.load(open(fp))
-    return msgs
     
 def compute_index(rec_time, msgs):
     gaze_data_index = [0]
@@ -38,7 +34,7 @@ if __name__ == '__main__':
     msg_fp = ('C:\\Users\\biand\\Documents\\Affective_touch\\'+
             'Affective_touch_data\\803\\jsonData-12-16.json')
     rec_time, df = import_eye_tracker_data(data_fp)
-    msgs = import_msgs(msg_fp)
+    msgs = json.load(msg_fp)
     gaze_data_index = compute_index(rec_time, msgs)
     print(gaze_data_index)
     df_list = []
@@ -53,3 +49,4 @@ if __name__ == '__main__':
         structured_data['brushEnabled'] = msgs[2*i+1]['brushEnabled']
         structured_data['eyeGazeData'] = df_list[i]
         data_list.append(structured_data)
+        

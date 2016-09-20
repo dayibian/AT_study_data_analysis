@@ -2,11 +2,7 @@
 #from dateutil import tz
 import time
 import pandas as pd
-import eye_tracker_data_analysis as etda
-try:
-    import cPickle as pickle
-except:
-    import pickle
+import json
 
 def convert_time(time_in_second):
     #t = ref_time + timedelta(microseconds = time_in_second*(10**6))
@@ -16,7 +12,7 @@ def convert_time(time_in_second):
     str_t = time.strftime("%Y-%m-%d %H:%M:%S",t)
     return pd.to_datetime(str_t)
     
-def import_data(path):
+def import_physio_data(path):
     df = pd.read_csv(path, sep = ' ',  
                     names = ['Signal','TimeStamp','Value'], 
                     error_bad_lines = False)
@@ -67,8 +63,8 @@ if __name__ == '__main__':
     data_fp = ('C:\\Users\\biand\\Documents\\Affective_touch\\'+
             'Affective_touch_data\\803\\physioData_803_12.15.15.txt')
     
-    df=import_data(data_fp)
-    msgs = etda.import_msgs(msg_fp)
+    df=import_physio_data(data_fp)
+    msgs = json.load(msg_fp)
     date = get_date(msg_fp2)
     dt_index = compute_dt_index(msgs,date)
     physioData_list = []
