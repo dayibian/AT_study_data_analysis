@@ -76,8 +76,11 @@ if __name__ == '__main__':
                         [dt_index[2*i]:dt_index[2*i+1]])
         ibiData = (df.xs('E4_Ibi',level='Signal')
                         [dt_index[2*i]:dt_index[2*i+1]])
+        hrData = (df.xs('E4_Hr',level='Signal')
+                        [dt_index[2*i]:dt_index[2*i+1]])                
         physioData['bvpData'] = bvpData
         physioData['gsrData'] = gsrData
         physioData['ibiData'] = ibiData
+        physioData['hrData'] = hrData
         physioData_list.append(physioData)
     
