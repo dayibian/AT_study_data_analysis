@@ -32,6 +32,7 @@ def check_hit(gazePosition):
             hit = True
             break
     return hit
+
 def compute_roi_percentage(gazePositions):
     sample_num = len(gazePositions)
     hit_num = 0
