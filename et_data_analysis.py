@@ -13,7 +13,7 @@ def compute_attention_percentage(etdata):
     y = []
     for i in range(sample_num):
         sample = etdata.iloc[i]
-        if sample.GazeX*sample.GazeY != 0:
+        if sample.GazeX>0 and sample.GazeY>0:
             x.append(sample.GazeX)
             y.append(sample.GazeY)
     gazePositions = zip(x,y)
