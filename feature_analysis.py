@@ -12,7 +12,7 @@ def compute_mean(l):
             s += item
             count += 1
     if count != 0:
-        return s/count
+        return s/float(count)
     else:
         return 0
             
@@ -35,14 +35,23 @@ attentionPercentage_wot = []
 roiPercentage = []
 roiPercentage_wt = []
 roiPercentage_wot = []
+
 heartRate_wt = []
 heartRate_wot = []
 ibi_wt = []
 ibi_wot = []
+scrRate_wt = []
+scrRate_wot = []
+scrMean_wt = []
+scrMean_wot = []
+sclMean_wt = []
+sclMean_wot = []
+
 attentionPercentage_nat = []
 attentionPercentage_nonnat = []
 roiPercentage_nat = []
 roiPercentage_nonnat = []
+
 attentionPercentage_sync = []
 attentionPercentage_async = []
 roiPercentage_sync = []
@@ -63,11 +72,17 @@ for feature in features:
         roiPercentage_wt.append(feature['roiPercentage'])
         heartRate_wt.append(feature['heartRate'])
         ibi_wt.append(feature['ibi'])
+        scrRate_wt.append(feature['scr_rate'])
+        scrMean_wt.append(feature['scr_mean'])
+        sclMean_wt.append(feature['scl_mean'])
     elif not feature['brushEnabled']:
         attentionPercentage_wot.append(feature['attentionPercentage'])
         roiPercentage_wot.append(feature['roiPercentage'])
         heartRate_wot.append(feature['heartRate'])
         ibi_wot.append(feature['ibi'])
+        scrRate_wot.append(feature['scr_rate'])
+        scrMean_wot.append(feature['scr_mean'])
+        sclMean_wot.append(feature['scl_mean'])
         
     if (feature['stimulusName']=='native_low_1' or 
             feature['stimulusName']=='native_low_2'):
@@ -95,6 +110,12 @@ print 'Heart rate for touch group is:',np.mean(heartRate_wt)
 print 'Heart rate for non-touch group is:',np.mean(heartRate_wot)
 print 'Ibi for touch group is:',np.mean(ibi_wt)
 print 'Ibi for non-touch group is:',np.mean(ibi_wot)
+print 'scr rate for touch group is:',compute_mean(scrRate_wt)
+print 'scr rate for non-touch group is:',compute_mean(scrRate_wot)
+print 'scr mean for touch group is:',compute_mean(scrMean_wt)
+print 'scr mean for non-touch group is:',compute_mean(scrMean_wot)
+print 'scl mean for touch group is:',compute_mean(sclMean_wt)
+print 'scl mean for non-touch group is:',compute_mean(sclMean_wot)
 
 print 'Attention rate for sync group is:',compute_mean(attentionPercentage_sync)
 print 'Attention rate for async group is:',compute_mean(attentionPercentage_async)
