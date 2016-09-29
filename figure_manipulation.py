@@ -45,6 +45,6 @@ if __name__ == '__main__':
     attention_per, gazePos = etda.compute_attention_percentage(etdata)
     gazePos_pixel = []
     for gaze in gazePos:
-        if gaze[0]>0 and gaze[1]>0:
+        if 0<gaze[0]<1 and 0<gaze[1]<1:
             gazePos_pixel.append((gaze[0]*1920, gaze[1]*1080))
     plot_gazePos('native_stimulus.png',gazePos_pixel)
