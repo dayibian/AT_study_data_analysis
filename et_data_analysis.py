@@ -51,5 +51,5 @@ if __name__ == '__main__':
     for data in alldata:
         etdata = data['eyeGazeData']
         attention_per, gazePos = compute_attention_percentage(etdata)
-        print attention_per
+        # print attention_per
         #print gazePos
