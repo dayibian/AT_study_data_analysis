@@ -234,9 +234,10 @@ class ET_features:
         return hit_percentage
 
 if __name__ == '__main__':
-    PIDs = ['810v3', '817v4', '818v4', '822v3', '824v3', '826v3', '827v3',
-        '830v3', '833v3', '835v3', '838v3', '843v2', '845',
-        '847', '848', '849', '823v3', '829v2', '844v2']
+    # PIDs = ['810v3', '817v4', '818v4', '822v3', '824v3', '826v3', '827v3',
+    #     '830v3', '833v3', '835v3', '838v3', '843v2', '845',
+    #     '847', '848', '849', '823v3', '829v2', '844v2']
+    PIDs = ['851']
     data_path = Path('../MADCAP_DATA')
     results = []
     for PID in PIDs:
@@ -284,4 +285,4 @@ if __name__ == '__main__':
     results_df = pd.concat(results, ignore_index=True)
     with open('results.pkl', 'wb') as f:
         pickle.dump(results, f)
-    results_df.to_csv('features.csv')
+    results_df.to_csv('features_851.csv')
