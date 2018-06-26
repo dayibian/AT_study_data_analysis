@@ -1,2 +1,7 @@
 *.pyc
 *.pkl
+MADCAP_POWER/
+figures/
+data_3_8_2018/
+.vscode/
+.ipynb_checkpoints/
